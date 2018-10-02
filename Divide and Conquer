@@ -1,0 +1,26 @@
+Divide and conquer is an algorithm design paradigm based on multi-branched recursion. 
+A divide and conquer algorithm works by recursively breaking down a problem into two or more sub-problems of the same or related type, until these become simple enough to be solved directly. 
+The solutions to the sub-problems are then combined to give a solution to the original problem.
+Divide and Conquer takes place in following 3 steps:
+  1. Divide: Break the given problem into subproblems of same type.
+  2. Conquer: Recursively solve these subproblems
+  3. Combine: Appropriately combine the answers
+  Understanding and designing divide and conquer algorithms is a complex skill that requires a good understanding of the nature of the underlying problem to be solved. 
+As when proving a theorem by induction, it is often necessary to replace the original problem with a more general or complicated problem in order to initialize the recursion, and there is no systematic method for finding the proper generalization.
+Early examples of these algorithms are primarily decrease and conquer – the original problem is successively broken down into single subproblems, and indeed can be solved iteratively.
+Following are some standard algorithms that are Divide and Conquer algorithms.
+1) Binary Search is a searching algorithm.
+In each step, the algorithm compares the input element x with the value of the middle element in array. If the values match, return the index of middle. Otherwise, if x is less than the middle element, then the algorithm recurs for left side of middle element, else recurs for right side of middle element.
+2) Quicksort is a sorting algorithm.
+The algorithm picks a pivot element, rearranges the array elements in such a way that all elements smaller than the picked pivot element move to left side of pivot, and all greater elements move to right side. Finally, the algorithm recursively sorts the subarrays on left and right of pivot element.
+3) Merge Sort is also a sorting algorithm.
+The algorithm divides the array in two halves, recursively sorts them and finally merges the two sorted halves.
+4) Closest Pair of Points The problem is to find the closest pair of points in a set of points in x-y plane. 
+The problem can be solved in O(n^2) time by calculating distances of every pair of points and comparing the distances to find the minimum. The Divide and Conquer algorithm solves the problem in O(nLogn) time.
+5) Strassen’s Algorithm is an efficient algorithm to multiply two matrices. 
+A simple method to multiply two matrices need 3 nested loops and is O(n^3). Strassen’s algorithm multiplies two matrices in O(n^2.8974) time.
+6) Cooley–Tukey Fast Fourier Transform (FFT) algorithm is the most common algorithm for FFT.
+It is a divide and conquer algorithm which works in O(nlogn) time.
+
+
+  
