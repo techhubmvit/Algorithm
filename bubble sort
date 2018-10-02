@@ -1,0 +1,63 @@
+
+The process of arranging the given elements so that they are in ascending order or descending order is called SORTING.For example consider
+the unsorted elements:
+                                                      12,1,34,54,23
+
+After sorting them in ascending order,we get the following list:
+                            
+                                                      1,12,23,34,54
+After sorting them in descending order,we get the following list:
+
+                                                       54,34,23,12,1
+DESIGN OF BUBBLE SORT:
+step 1.Identify parameters of function:Given an array a consisting of n elements we have to sort them in ascending order.So
+
+                                                |-----------------------------|
+                                                |parameters are:int a[],int n |
+                                                |-----------------------------|
+step 2.Return type:Our intention is only to sort numbers.Hence,we are not returning any value.So,
+
+                                                |----------------|
+                                                |return type:void|
+                                                |----------------|
+step 3.Designing the body of the function.This is the simplest and easiest sorting technique.In this,the two successive items A[i] and
+        A[i+1] are exchanged whwnever A[i]>=A[i+1].
+        For example,consider the elements shown below:
+                                                 50,40,30,20,10
+The elements can be sorted as shown below:
+
+                         |      1ST PASS         |  2ND PASS       |  3RD PASS   | 4TH pass
+                A[0]=50<-|40    40    40    40<- |30    30    30<- |20    20     |10
+                A[1]=40<-|50<-  30    30    40<- |40<-  20    20<- |30<-  10     |20
+                A[2]=30  |30<-  50<-  20    20   |20<-  40<-  10   |10<-  30     |30
+                A[3]=20  |20    20<-  50<-  10   |10    10<-  40   |40    40     |40
+                A[4]=10  |10    10    10<-  50   |50    50    50   |50    50     |50
+                         |                       |                 |             |
+                 Given   | 50 sinks to bottom    | 40 sinks to     |30 sinks     |20 sinks to 
+                  Array  |  after pass 1         |   pass 2        |to bottom    |bottom             
+                                                     after pass 3
+                                                                                    
+Observe that after each pass,the larger values sinks to the bottom of the array and hence it is called sinking sort.Also observe that
+at the end of each pass smaller values gradually "BUBBLE" their way upward to the top and hence called 'BUBBLE SORT'.
+
+ALGORITHM FOR BUBBLE  SORT:
+
+                    ALGORITHM BubbleSort(a[],n)
+                      for j<-1 to n-1 do
+                        for i<-0 to n-j-1 do
+                          if(a[i]>a[i+1])
+                            temp<--a[i]
+                            a[i]<--a[i+1]
+                            a[i+1]<--temp
+                          end if
+                        end for
+                      end for
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                
