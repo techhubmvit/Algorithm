@@ -1,1 +1,33 @@
+Programming language:
+    Most popular Programming languages used in contests are C++ , Python, and Java
+ 
+C++ code template
+
+    #include<bits/stdc++.h>
+
+    using namespace std;
+    int main()
+    {
+        //solution comes here
+    }
+
+Input and output is sometimes a bottleneck in program.
+The following lines at the beginning of the code make input and output more efficient:
+
+    ios::sync_with_stdio(0);
+    cin.tie(0)
+
+Note that the newline "\n" works faster than endl , because endl always causes a flush operation.
+
+
+Sometimes the program should read a whole line from the input, possibly containning spaces. This can 
+be  accomplished by using the getline functon
+
+    string s;
+    getline(cin, s);
+
+if the amount of data is unknows, the following loop is useful:
+    while(cin >> x){
+        //code
+    }
 
