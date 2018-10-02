@@ -1,0 +1,27 @@
+Fibonacci series is very intresting especially for folks who love mathematics.They are in the following sequence 
+            0,1,1,2,3,5,8,13,21,34,55,89.........
+First 2 numbers of this sequence is always 0 and 1. Numbers follwing it are in recurance relations.
+Fibonacci numbers appear to have first arisen in perhaps 200 BC in work by Pingala on enumerating possible patterns of poetry formed from syllables of two lengths. 
+The Fibonacci sequence is named after Italian mathematician Leonardo of Pisa, known as Fibonacci. His 1202 book Liber Abaci introduced the sequence to Western European mathematics, although the sequence had been described earlier in Indian mathematics. 
+The sequence described in Liber Abaci began with F1 = 1. Fibonacci numbers were later independently discussed by Johannes Kepler in 1611 in connection with approximations to the pentagon.
+Their recurrence relation appears to have been understood from the early 1600s, but it has only been in the past very few decades that they have in general become widely discussed.
+Fibonacci numbers are closely related to Lucas numbers, in that they form a complementary pair of Lucas sequences.
+Here is C program to generate fibonacci series
+#include<stdio.h> 
+int fib(int n) 
+{ 
+   if (n <= 1) 
+      return n; 
+   return fib(n-1) + fib(n-2); 
+} 
+  
+int main () 
+{ 
+  int n = 5;// in this example i have given n as 5 
+  printf("%d", fib(n)); 
+  getchar(); 
+  return 0; 
+} 
+This will generate the first 5 numbers of fibonacci series ie, 0,1,1,2,3.
+Fibonacci series is used in computer based algorithms such as fibonacci search technique and fibonacci based heap data structure and also graphs called fibonacci cubes.
+They also appear in biological settings as branching in trees, number of petals in flowers.
