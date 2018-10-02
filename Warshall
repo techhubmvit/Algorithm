@@ -1,0 +1,201 @@
+=> Warshall's algorithm
+
+Warshall's algorithm determines whether there is a path between any two nodes in the graph. 
+It does not give the number of the paths between two nodes.
+
+Idea: Compute all paths containing node 1, then all paths containing nodes 1 or 2 or 1 and 2, and so on,
+until we compute all paths with intermediate nodes selected from the set {1, 2, … n}.
+
+Here we compute a sequence of matrices P(0), P(1) ,…, P(n) such that P(0) = A, P(n) = P, the path matrix,
+and P(r) shows all paths with intermediate nodes selected from the set of nodes {1, 2, 3, …, r}.
+
+# The algorithm can be defined recursively:
+
+Let P(0) = A.
+Let P(r) is a matrix such that:
+
+pik(r) = 1 if and only if there is a path connecting nodes i and k through one or more of nodes {1, 2, …, r}
+
+pik(r) = 0 otherwise
+
+Let P(r+1) is the matrix where
+
+pik(r+1) = 1 if and only if there is a path connecting nodes i and k through one or more of nodes {1, 2, …, r, r+1}
+
+pik(r+1) = 0 otherwise
+
+P(r+1) can be obtained from P(r) in the following way:
+
+If pik(r) = 1 then pik(r+1) := 1
+
+Else pik(r+1) := p i r+1(r) * p r+1 k(r)
+
+As a result we have:
+
+pik(r+1) = 1 if and only if there is a path connecting nodes i and k and containing intermediate nodes selected from 
+the set {1, 2, 3, .. r+1}
+
+pik(r+1) = 0 otherwise.
+
+# Correctness of the algorithm
+
+a) Suppose pik(r+1) = 1. This is possible only if
+
+    pik(r) = 1, which by the definition of P(r) means that there is a path between nodes i and k, 
+    with intermediate nodes selected from {1, 2, … r}, or:
+
+    Both pi,r+1(r) and pr+1,k(r) are equal to 1.
+
+    pi,r+1(r) = 1 means that there is a path from node i to node r+1 containing intermediate nodes selected from the 
+    set {1, 2, 3, .. r}
+
+    pr+1,k(r) = 1 means that there is a path from node r+1 to node k containing intermediate nodes selected from the
+    set {1, 2, 3, .. r}
+
+    Thus, there is a path from node i to node r+1 and from node r+1 to node k. Hence there is a path from i to k 
+    through r+1, i.e. its intermediate nodes are selected from the set {1, 2, 3, .. r+1}
+
+    Therefore, if pi,k(r+1) = 1 then there is a path from i to k with its intermediate nodes selected from the
+    set {1, 2, 3, .. r+1}
+
+b) Suppose now that there is a path from node i to node k with its intermediate nodes selected from the
+set {1, 2, 3, .. r+1}
+
+Consider two cases
+
+    r+1 is not in the path connecting i and k. Then the path is selected from {1,2, .. , r} by the definition of P(r).
+    pik (r) = 1 (see (b) above), hence pik(r+1) = 1
+
+    r+1 is in the path connecting i> and k. Then there is a path connecting i and r+1, and a path connecting r+1 and k. 
+    Hence pi,r+1(r) and p r+1,k (r) are equal to 1.
+    Therefore, pi,r+1(r) * p r+1,k(r) = 1
+    Therefore pik(r+1) = 1.
+
+Warshall's algorithm requires O(n3) operations:
+O(n2) to obtain each P(r) and the calculations are done for r = 1, 2, .., n
+
+Example
+
+Adjacency matrix A:
+
+
+                  1     2    3    4   5
+           1      0     1    1    0   0
+           2      0     0    0    1   0 
+           3      0     0    0    1   1  
+           4      0     0    0    0   1
+           5      0     1    0    0   0
+
+P(0) = A, i.e. this is the matrix showing paths with no intermediate nodes. P(1) is the matrix containing all paths
+from P(0) plus all paths with 1 as intermediate node.
+
+Its elements are computed in the following way:
+
+pij(1) = 1 if pij(0) = 1
+
+Else pij(1) = pi1(0) * p1j(0)
+
+Thus for all elements that are 0 in P(0), we compute the products of the elements in the first column and the first 
+row of P(0). Since all elements in the first column are 0, the products will be 0, so P(1) will be the same as P(0).
+
+P(1) =
+
+                  1     2    3    4   5
+           1      0     1    1    0   0
+           2      0     0    0    1   0 
+           3      0     0    0    1   1  
+           4      0     0    0    0   1
+           5      0     1    0    0   0
+
+P(2) will contain all paths computed in P(1) plus all paths that contain 2 as an intermediate node
+
+pij(2) = 1 if pij(1) = 1
+
+Else pij(2) = pi2(1) * p2j(1)
+
+Here we compute the products of the second column and the second row. The second column contains two non-zero elements,
+and the second row contains one non-zero element, thus the non-zero products will be:
+
+p14(2) = p12(1) * p24(1) , p54(2) = p52(1) * p24(1)
+
+P(2) =
+
+                  1     2    3    4   5
+           1      0     1    1    1   0
+           2      0     0    0    1   0 
+           3      0     0    0    1   1  
+           4      0     0    0    0   1
+           5      0     1    0    1   0
+
+The new paths are the paths connecting nodes 1 and 4 through node 2, and nodes 5 and 4 through node 2.
+
+Next we compute P(3), looking for paths that have intermediate nodes among {1, 2, 3}.
+
+pij(3) = 1 if pij(2) = 1
+
+Else pij(3) = pi3(2) * p3j(2)
+
+Here we look at the products of the elements in the third column and the third row. The non-zero products are:
+p14(3) = p13(2) * p34(2) , p15(3) = p13(2) * p35(2)
+
+Note that p14(2) = 1, which means that we have already found a path between nodes 1 and 2.
+The new path computed here is the path connecting nodes 1 and 5 through node 3.
+
+P(3) =
+
+                  1     2    3    4   5
+           1      0     1    1    1   1
+           2      0     0    0    1   0 
+           3      0     0    0    1   1  
+           4      0     0    0    0   1
+           5      0     1    0    1   0
+
+Next we compute P(4), looking for paths that have intermediate nodes among {1, 2, 3, 4}.
+
+pij(4) = 1 if pij(3) = 1
+
+Else pij(4) = pi4(3) * p4j(3)
+
+Here we find the products of the elements in the fourth column and fourth row. The non-zero products are:
+
+p15(4) = p14(3) * p45(3)
+p25(4) = p24(3) * p45(3)
+p35(4) = p34(3) * p45(3)
+p55(4) = p54(3) * p45(3)
+
+Only p25(4) and p55(4) give new paths, connecting nodes 2 and 5 through node 4, and node 5 to itself through node 4. 
+Thus we have
+
+P(4) =
+
+                  1     2    3    4   5
+           1      0     1    1    1   1
+           2      0     0    0    1   1 
+           3      0     0    0    1   1  
+           4      0     0    0    0   1
+           5      0     1    0    1   1
+
+Finally, we compute P(5)
+
+pij(5) = 1 if pij(4) = 1
+
+Else pij(5) = pi5(4) * p5j(4)
+
+The fifth column contains five non-zero elements, and the fifth row contains three non-zero elements, hence
+fifteen products will be not equal to zero. The new paths are given by the elements:
+p22(5) - connecting 2 to itself through node 5
+p32(5) - connecting 3 and 2 through node 5
+p42(5) - connecting 4 and 2 through node 5
+p44(5) - connecting 4 to itself through node 5
+
+P(5) =
+
+                  1     2    3    4   5
+           1      0     1    1    1   1
+           2      0     1    0    1   1 
+           3      0     1    0    1   1  
+           4      0     1    0    1   1
+           5      0     1    0    1   1
+
+The matrix shows that no node is connected to node 1. Except node 1, no other node is connected to node 3. 
+Node 1 is connected to all nodes except to itself. All nodes are connected to 2, 4, and 5.
