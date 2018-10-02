@@ -1,0 +1,31 @@
+A dynamic array
+is an array whose size can be changed during the execution of
+the program. The most popular dynamic array in C++ is the
+vector
+structure,
+which can be used almost like an ordinary array.
+The following code creates an empty vector and adds three elements to it:
+
+    vector<int> v;
+    v.push_back(3); // [3]
+    v.push_back(2); // [3,2]
+    v.push_back(5); // [3,2,
+
+A shorter way to iterate through a vector is as follows:
+    for (auto x : v) {
+        cout << x << "\n";
+    }
+
+The function back returns the last element in the vector, and the function pop_back
+removes the last element 
+
+The following code creates a vector with five elements:
+    vector<int> v = {2,4,2,5,1};
+
+Another way to create a vector is to give the number of elements and the
+initial value for each element:
+    // size 10, initial value 0
+    vector<int> v(10);
+
+    // size 10, initial value 5
+    vector<int> v(10, 5)
