@@ -1,0 +1,80 @@
+->Merge sort Introduction
+
+The strategy behind Merge Sort is to change the problem of sorting into the problem of merging two sorted sub-lists into one.
+If the two halves of the array were sorted, then merging them carefully could complete the sort of the entire list.
+
+MergeSort(first, last) 
+{
+	if (first < last)
+	{
+		mid = (first+last)/2;
+
+		MergeSort(first,mid);
+		MergeSort(mid+1,last);
+		Merge(first,mid+1,last);
+	}	
+}
+
+Merge Sort is a "recursive" algorithm because it accomplishes its task by calling itself on a smaller version of the problem (only half of the list). For example, if the array had 2 entries, Merge Sort would begin by calling itself for item 1. Since there is only one element, that sub-list is sorted and it can go on to call itself in item 2. Since that also has only one item, it is sorted and now Merge Sort can merge those two sub-lists into one sorted list of size two.
+
+As another example, Merge Sort on 4 entries would run as follows:
+
+MergeSort items 1 - 4 would call:
+
+    MergeSort items 1-2:
+        MergeSort item 1 (sorted)
+        MergeSort item 2 (sorted)
+        Merge lists 1 and 2 
+    MergeSort items 3-4:
+        MergeSort item 3 (sorted)
+        MergeSort item 4 (sorted)
+        Merge lists 3 and 4 
+    Merge lists 1-2 and 3-4 
+
+The real problem is how to merge the two sub-lists. While it can be done in the original array, the algorithm is much simpler if it uses a separate array to hold the portion that has been merged and then copies the merged data back into the original array. The basic philosophy of the merge is to determine which sub-list starts with the smallest data and copy that item into the merged list and move on to the next item in the sub-list.
+
+merge(first, mid, last) 
+{
+	k=0;  /* k keeps track of how many entries in the temp array */
+	      /* are full */
+	i=first;  /* i keeps track of the lowest entry in the first */
+			/* sub-list which hasn't been copied into temp */
+	j=mid;    /* j keeps track of the lowest entry in the first */
+			/* sub-list which hasn't been copied into temp */
+	while ((i < mid) && (j < = last))
+  	/* This loop will continue until one of the sublists is empty */
+	{
+		if (data[i] < data[j])
+		{
+			temp[k]=data[i];
+			i++;
+			k++;
+		}
+		else
+		{
+			temp[k]=data[j];
+			j++;
+			k++;
+		}
+	}
+	/* copy the rest of the sublist that wasn't empty into the temp array */
+	while (i < mid)
+	{
+		temp[k]=data[i];
+		i++;
+		k++;
+	}
+	while (j < = last)
+	{					
+		temp[k]=data[j];
+		j++;
+		k++;
+	}
+	/* Now copy the temporary array back into the original array */
+	for (m=0;m <=last-first;m++)
+	{
+		j=first+m;
+		data[j] = temp[i];
+	}		
+
+
