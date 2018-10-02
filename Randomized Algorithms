@@ -1,0 +1,12 @@
+An algorithm that uses random numbers to decide what to do next anywhere in its logic is called Randomized Algorithm.
+It employs a degree of randomness as part of its logic.
+Typically, this randomness is used to reduce time complexity or space complexity in other standard algorithms.
+HISTORY:
+Historically, the first randomized algorithm was a method developed by Michael O. Rabin for the closest pair problem in computational geometry
+The study of randomized algorithms was spurred by the 1977 discovery of a randomized primality test (i.e., determining the primality of a number) by Robert M. Solovay and Volker Strassen.
+Soon afterwards Michael O. Rabin demonstrated that the 1976 Miller's primality test can be turned into a randomized algorithm. At that time, no practical deterministic algorithm for primality was known.
+EXAMPLES:
+  1.MINCUT
+  2.QUCIKSORT
+  3.RANDOMIZED INCREAMENTAL CONSTRUCTION IN GEOMETRY.
+In common practice, randomized algorithms are approximated using a pseudorandom number generator in place of a true source of random bits; such an implementation may deviate from the expected theoretical behavior.
