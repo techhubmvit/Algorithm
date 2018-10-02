@@ -1,0 +1,34 @@
+Depth first search
+Depth first search is another way of traversing graphs, which is closely related to preorder traversal of a tree. Recall that preorder traversal simply visits each node before its children. It is most easy to program as a recursive routine:
+
+    preorder(node v)
+    {
+    visit(v);
+    for each child w of v
+        preorder(w);
+    }
+
+To turn this into a graph traversal algorithm, we basically replace "child" by "neighbor". But to prevent infinite loops, we only want to visit each vertex once. Just like in BFS we can use marks to keep track of the vertices that have already been visited, and not visit them again. Also, just like in BFS, we can use this search to build a spanning tree with certain useful properties.
+
+    dfs(vertex v)
+    {
+    visit(v);
+    for each neighbor w of v
+        if w is unvisited
+        {
+        dfs(w);
+        add edge vw to tree T
+        }
+    }
+
+The overall depth first search algorithm then simply initializes a set of markers so we can tell which vertices are visited, chooses a starting vertex x, initializes tree T to x, and calls dfs(x). Just like in breadth first search, if a vertex has several neighbors it would be equally correct to go through them in any order. I didn't simply say "for each unvisited neighbor of v" because it is very important to delay the test for whether a vertex is visited until the recursive calls for previous neighbors are finished.
+
+The proof that this produces a spanning tree (the depth first search tree) is essentially the same as that for BFS, so I won't repeat it. However while the BFS tree is typically "short and bushy", the DFS tree is typically "long and stringy".
+
+Just like we did for BFS, we can use DFS to classify the edges of G into types. Either an edge vw is in the DFS tree itself, v is an ancestor of w, or w is an ancestor of v. (These last two cases should be thought of as a single type, since they only differ by what order we look at the vertices in.) What this means is that if v and w are in different subtrees of v, we can't have an edge from v to w. This is because if such an edge existed and (say) v were visited first, then the only way we would avoid adding vw to the DFS tree would be if w were visited during one of the recursive calls from v, but then v would be an ancestor of w.
+
+As an example of why this property might be useful, let's prove the following fact: in any graph G, either G has some path of length at least k. or G has O(kn) edges.
+
+Proof: look at the longest path in the DFS tree. If it has length at least k, we're done. Otherwise, since each edge connects an ancestor and a descendant, we can bound the number of edges by counting the total number of ancestors of each descendant, but if the longest path is shorter than k, each descendant has at most k-1 ancestors. So there can be at most (k-1)n edges.
+
+This fact can be used as part of an algorithm for finding long paths in G, another subgraph isomorphism problem closely related to the traveling salesman problem. If k is a small constant (like say 5) you can find paths of length k in linear time (measured as a function of n). But measured as a function of k, the time is exponential, which isn't surprising because this problem is closely related to the traveling salesman problem. For more on this particular problem, see Michael R. Fellows and Michael A. Langston, "On search, decision and the efficiency of polynomial-time algorithms", 21st ACM Symp. Theory of Computing, 1989, pp. 501-512.
