@@ -33,12 +33,10 @@ whose status is unknown.
 1.) P-Class
 The class P consists of those problems that are solvable in polynomial time, i.e. these problems can be solved in time O(nk)
 in worst-case, where k is constant.
-
 These problems are called tractable, while others are called intractable or superpolynomial.
 
 Formally, an algorithm is polynomial time algorithm, if there exists a polynomial p(n) such that the algorithm can 
 solve any instance of size n in a time O(p(n)).
-
 Problem requiring Ω(n50) time to solve are essentially intractable for large n. Most known polynomial time algorithm 
 run in time O(nk) for fairly low value of k.
 The advantages in considering the class of polynomial-time algorithms is that all reasonable deterministic single
@@ -48,8 +46,8 @@ processor model of computation can be simulated on each other with at most a pol
 The class NP consists of those problems that are verifiable in polynomial time. NP is the class of decision problems
 for which it is easy to check the correctness of a claimed answer, with the aid of a little extra information.
 Hence, we aren’t asking for a way to find a solution, but only to verify that an alleged solution really is correct.
-
 Every problem in this class can be solved in exponential time using exhaustive search.
+
 
 # P versus NP
 Every decision problem that is solvable by a deterministic polynomial time algorithm is also solvable by a polynomial 
