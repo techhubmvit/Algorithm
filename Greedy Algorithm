@@ -1,0 +1,16 @@
+A greedy algorithm is an algorithmic paradigm that follows the problem solving heuristic of making the locally optimal choice at each stage with the intent of finding a global optimum. 
+In many problems, a greedy strategy does not usually produce an optimal solution, but nonetheless a greedy heuristic may yield locally optimal solutions that approximate a globally optimal solution in a reasonable amount of time.
+For example, a greedy strategy for the traveling salesman problem (which is of a high computational complexity) is the following heuristic: "At each step of the journey, visit the nearest unvisited city." 
+This heuristic does not intend to find a best solution, but it terminates in a reasonable number of steps; 
+finding an optimal solution to such a complex problem typically requires unreasonably many steps. 
+In mathematical optimization, greedy algorithms optimally solve combinatorial problems having the properties of matroids, and give constant-factor approximations to optimization problems with submodular structure.
+In general, greedy algorithms have five components:
+  A candidate set, from which a solution is created
+  A selection function, which chooses the best candidate to be added to the solution
+  A feasibility function, that is used to determine if a candidate can be used to contribute to a solution
+  An objective function, which assigns a value to a solution, or a partial solution, and
+  A solution function, which will indicate when we have discovered a complete solution
+Greedy algorithms can be characterized as being 'short sighted', and also as 'non-recoverable'. They are ideal only for problems which have 'optimal substructure'. Despite this, for many simple problems, the best suited algorithms are greedy algorithms. It is important, however, to note that the greedy algorithm can be used as a selection algorithm to prioritize options within a search, or branch-and-bound algorithm. There are a few variations to the greedy algorithm:
+  Pure greedy algorithms
+  Orthogonal greedy algorithms
+  Relaxed greedy algorithms
