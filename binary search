@@ -1,0 +1,6 @@
+Binary search is a technique to search an item thereby finding its position in a sorted array.
+It basically divides the sorted array into two parts by comparing the item with the middle element.
+If it matches then the position is returned.
+Else it continues searching in either of the two parts depending on its value.
+This process continues and each time the item is compared with the updated mid value.
+If mid value is not returned after the process ends then  item is not found.
