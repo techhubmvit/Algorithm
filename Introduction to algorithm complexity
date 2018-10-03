@@ -1,0 +1,193 @@
+When we solve a problem by creating an algorithm, we have different ways to do it, and can apply several strategies. 
+As a result we can arrive at different algorithmic solutions.
+From a computational point of view, it’s necessary to have a mechanism to compare one solution to another. 
+This way, we can learn beforehand how different algorithms for the same problem will behave —this is especially true for
+big problems.
+
+Algorithm complexity is a theoretical metric that is applied to algorithms in order to measure them.
+It’s a basic and important concept for all programmers, but at the same time, it’s often unknown.
+
+It is said to be a difficult issue, but that’s not strictly true. Algorithm complexity is a tricky matter but just 
+from a theoretical point of view. The study and measurement of the complexity of algorithms only requires some mathematical
+skills and the application of some specific techniques —nothing that a software engineer isn’t already used to.
+
+-> Introduction
+
+Understanding the complexity of algorithms is important because it will allow us to choose from them in an educated and
+informed manner. We will see that we won’t always select the least complex, but rather the one that suits us best for 
+the problem we want to solve.
+
+Just as in meteorology, an algorithm has many variables that we need to break apart and study, 
+in order to calculate the big picture, or as the metaphor goes, be able to say “it’s going to rain today”.
+
+There are two main measurements for algorithm complexity: time and space (in memory).
+
+# Space complexity is much less important nowadays because computers have so much more power. 
+
+# Time however is a much more scarce resource. So, every time that you see “complexity”, people are referring to the
+“time complexity” of an algorithm.
+
+-> The size of a problem
+
+The underlying idea behind the concept of time complexity of an algorithm is, basically, measuring how much time it takes
+to successfully solve the problem.
+
+An algorithm is typically an input that is transformed into an output after taking a series of steps.
+So, imagine some sorting algorithm for an array… will it take the same time to sort a 100-element array than one 
+with 1,000,000 elements? Obviously not. The algorithm will perform the same task regardless of the length of the array,
+but the length will directly impact the time it takes to finish.
+
+In that sense, we need to start talking about the size of a problem. That size is a set of values that can be derived
+from the input, and that size will change the final time the algorithm will take to finish.
+
+Algorithm complexity will then be calculated based on the size of a problem. In the sorting array case, 
+we only have one size that matters: the array length and we can call it n.
+Algorithm complexity is a function
+
+If we have an array with n elements, how much time will it take for our algorithm to finish?
+Well, it depends on two things: the value that n has for each case and the computer that will execute the algorithm. 
+If those two variables always change the final time, we need to come up with a simplification that allow us just to 
+compare algorithms that aren’t based on the size of an input or different computers.
+
+Instead of measuring time, we will measure the amount of instructions that the computer will need to execute the algorithm,
+and we will assume that every instruction is executed in a constant amount of time.
+
+Notice that we can allow that simplification because what we really need to know is how the necessary amount of 
+instructions to solve the problem grow, based on the size of the input. That is what algorithm complexity is all about.
+
+Let’s see an example. Consider the following pseudo code:
+
+1	function (n) {
+2	   var a, j, k;
+3
+4	   for j = 1 up to j = n {
+5   		a = a + j;
+6   		j++;
+7	   } 
+8   
+9	   for k = n up to k = 1 {
+10   		a = a - 1;
+11   		a = a * 2;
+12   		k--;
+13	   }
+14   
+15		return a;
+16	}
+
+In this algorithm there are two loops. The first one, starting on line 4 is executed n times and inside of it,
+there are two instructions. That means that lines 5 and 6 are executed n times each, that is 2n.
+
+Inside the second loop, starting on line 9, we can find three other instructions: lines 10, 11 and 12. 
+As that loop is executed n times too, it will perform 3n instructions inside of it. Finally, line 15 is executed 
+just one time.
+
+How many instructions are executed in this algorithm? Let’s add: 2n + 3n + 1, that is 5n+1. So, we can say that the 
+complexity of that algorithm is 5n+1 because that is the amount of instructions it will execute for a problem of size n.
+
+If we picture 5n+1 as a function and check the graph, we’ll notice that it is a straight line.
+ 
+
+We can clearly see that the time this algorithm takes grows linearly to the size of the input.
+
+Imagine now that we have those two nested loops:
+ 
+
+1	for j = 1 up to j = n {
+2   	a = a + j;
+3   	for k = n up to k = 1 {
+4  			a = a - 1;
+5   		a = a * 2;
+6   		k--;
+7	   	}
+8	}
+
+ 
+
+Line 2 will be executed n times. Lines 4, 5 and 6 will be executed n times but the loop starting on line 3 will be 
+executed n times as well. So, how many times will those lines be executed? That’s right, 3n x n. So the final complexity
+of this new code is now n + 3n2.
+
+If we look at the graph of the function we can clearly see that the time it takes will now increase much faster for
+larger sizes.
+
+That is because now the function isn’t linear but rather quadratic.
+
+Best case, worst case
+
+In both examples above, the algorithm complexity is fully dependent of the size of the problem. But that’s not true for
+all algorithms. Think about finding an element in an array. Is it the same if the desired element is the first one, 
+the one in the middle, or the last one? What about a sorting algorithm: is it the same if the array is already sorted?
+
+In many algorithms, it’s not only the size of the input that impacts on the complexity, but also the content itself.
+
+To express that, we use a specific notation: the “Big-O”. We will say that the “find an element in an array” algorithm 
+has a worst-case complexity of O(n). The “O” comes from the Greek letter Omicron and was introduced by the mathematician 
+Paul Gustav Heinrich Bachmann in 1894, years before the first computer was ever thought about!
+
+In the opposite fashion, we can say the the best-case complexity of the algorithm is Ω(1) (the desired element is the 
+first one). That is the Omega notation.
+
+By convention, when we say “complexity” we almost always refer to the worst-case scenario.
+Complexity orders
+
+Those examples were really simple, but imagine algorithms in the real world. Those algorithms can be really big! 
+How can we simplify them?
+
+Let’s say that the complexity of some algorithms are O(10n+3), O(32n+12) and O(56n+1). What do they have in common? 
+They are all linear functions. Now think about another algorithm whose complexity is O(5n2 + 3n + 2). Its complexity 
+is quadratic. If we compare the graphs of those function we can realize that they have very different growth patterns,
+as we’ve seen before.
+
+With that context, we can group all the complexities that grow in the same way in the same bag, and we’ll have many bags.
+To each of those bags we’ll call them complexity order. In a more formal way, for all the functions that we group in the
+same bag or complexity order we can find an asymptote, that when multiplied by a value will superiorly bound our function
+when dealing with the worst case.
+
+That is, all linear complexities will be bound by a variation of n, all quadratic complexities will be bound by a variation
+of n2, and so on.
+
+As you can see, the complexity concept is completely simplified if we just think about complexity orders: instead of 
+counting the amount of line executions of an algorithm we just need to find the ones that are most executed. 
+That is, if we have a line or a set of lines that are executed n3 it doesn’t matter if all the other lines are executed
+less times.
+
+Why? Because, let’s say the final complexity is O(n3 + 2n + 5), we can be sure that for any value of n, and even in the
+worst case, the final value of the function won’t ever be higher than c n3, with c being a constant bigger than 1,
+because we can always find a c for which the function superiorly bounds the complexity of our algorithms.
+Most common complexity orders
+
+# O(1) → constant
+These are all algorithms that finish in a constant time, regardless of the size of the input. 
+Example: finding the biggest of two numbers.
+
+# O(log n) → logarithmic
+These are all algorithms where the execution time grows logarithmically. There aren’t many, and they are usually
+good algorithms because they imply that they take less instructions than the size of their input. 
+Example: some cool sorting algorithms
+
+# O(n) → linear
+Execution time grows linearly according to input size. Example: finding the biggest number in an array.
+
+# O(n log n) → linearithmic
+This is not such a bad complexity for an algorithm. It’s higher than linear but much smaller than quadratic.
+Example: Quicksort algorithm.
+
+# O(nc) with c > 1 → polynomial
+Here lie most of the algorithms. When c equals 2 it’s called quadratic, when it’s 3 it’s called cubic and the generic
+name is simply “polynomial”. This is the last acceptable order (as long as c is small enough) where we can be 
+sure that a computer can solve those algorithms within a sustainable timeframe.
+
+# O(cn) with c > 1 → exponential
+It seems similar to the previous one but it’s not: it’s much, much worse as it grows faster.
+
+# O(n!) → factorial
+It’s the typical complexity of those algorithms that try every possible combination. Think about brute-force password
+cracking and the time it can take to finish.
+
+# O(nn) –> combinatory
+Worst complexity ever. It grows so fast that even for small values of n the problem becomes impossible to manage.
+
+Those last three complexities are called non polynomial complexities (NP) and the rest are called polynomial (P). 
+Although it may seem strange, there is a lot of discussion on whether P = NP. This is the biggest question of computer
+science. If us humans discover it’s true, it would mean that for every existing problem of the universe there is a 
+polynomic way to solve them.
