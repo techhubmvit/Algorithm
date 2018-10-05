@@ -1,1 +1,44 @@
+HORNER METHOD:
+It is one of the most preferred methods to evaluate a polynomial because of its simple approach and lesser arithmetic operations.
+                                                      DESIGN:
+We can give the general form of the polynomial equation by:
+    a0x^0 + a1x^1 + a2x^2 +......anx^n
+In general,given the polynomial of the form,
+  a0x^0 + a1x^1 + a2x^2 + .......+ an-2x^n-2 + an-1x^n-1 + anx^n
+  We can rearrange this as shown below:
+    a0 + x(a1 + x(a2 + x(a3 + x(a4+...............x(an-4 + x(an-3 + x(an-2 + x(an-1 + xan))))....))))
+The above representation requires only 'n'  multiplications and 'n' additions there by number of computations can be reduced and efficiency 
+can be improved.This method of solving the polynomial is called HORNER'S method of evaluating polynomial.
+The equation can be written in reverse as shown below:
+((((anx + an-1)x + an-2)x + an-3)x....+ a3)x + a2)x + a1)x + a0
+This can be generally written as :
+sum + a0
+In general,we can write sum =(sum + ai)x for i=n-1,n-2,.....3,2,1
+The partial algorithm can be written as:
+
+                        sum = a[n]*x
+                        for i= n-1 down to 1
+                          sum = (sum + a[i]) * x
+                        end for
+                        sum = sum + a[0];
+                        
+The complete c function can be written as:
+                         
+                         double evaluate(double a[],int n,double x)
+                         {
+                                double sum;
+                                int i;
+                                ..................................
+                                sum = a[n] * x;
+                                ..................................
+                                for(i=n-1;i>=1;i--)
+                                {
+                                      sum = (sum + a[i]) * x;
+                                }
+                                ..................................
+                                sum = sum + a[0];
+                                ..................................
+                                return sum;
+                         }     
+                        
 
