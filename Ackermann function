@@ -1,0 +1,6 @@
+Ackermann function A(m,n) is a function with two parameters m and n. Both m and n are non negative integers.It uses the concept of recursion.
+It is defined as follows:
+i)If m=0, then A(m,n)=n+1
+ii)If m!=0 and n=0, then A(m,n)=A(m-1,1)
+iii)If m!=0 and n!=0, then A(m,n)=A(m-1,A(m,n-1)
+Ackermann function grows quickly.
