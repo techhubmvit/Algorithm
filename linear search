@@ -1,0 +1,6 @@
+Let arr be an array comprising of n elements.The objective is to search for a given key in arr.
+We compare the key with each element of arr.If found ,the position of the element is returned.
+At the end of this process,if key not found in arr then -1 is returned.
+This method which traverses arr sequentially to search key is known as linear search.
+In the main function, if key found then the position is printed.
+Otherwise, unsuccessful search is printed.

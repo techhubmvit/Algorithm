@@ -1,0 +1,6 @@
+A fuction calling itself in its own body is called a recursive fuction.
+Few recursive fuctions are factorial function,ackermann fuction,tower of hanoi,fibonacci series.
+A recursive function has two parts.
+i)base condition or terminating condition: there must be a reachable condition for function termination otherwise the fuction will be invoked endlessly. 
+ii)recursive call: the solution is divided into simpler parts. The result is obtained by combining the solutions of all these simpler parts.
+Thus, one can say recursion is an example of divide and conquer method.
