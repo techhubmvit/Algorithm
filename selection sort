@@ -1,0 +1,4 @@
+Selection sort is a sorting technique whose main idea is to select the smallest element in the unsorted array repeatedly.
+The smallest element of unsorted array selected is swapped with the first element of the unsorted array.
+If there are n elements then the array can be sorted in n-1 passes.
+In each pass, the smallest element of unsorted array is exchanged with first element of unsorted array.
