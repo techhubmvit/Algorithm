@@ -1,0 +1,45 @@
+The algorithm is based on below facts.
+
+If we subtract smaller number from larger (we reduce larger number), GCD doesn’t change. So if we keep subtracting repeatedly the larger of two, we end up with GCD.
+Now instead of subtraction, if we divide smaller number, the algorithm stops when we find remainder 0.
+Below is a recursive function to evaluate gcd using Euclid’s algorithm.
+
+
+
+// C++ program to demonstrate 
+// Basic Euclidean Algorithm 
+#include <bits/stdc++.h> 
+using namespace std; 
+  
+// Function to return  
+// gcd of a and b 
+int gcd(int a, int b) 
+{ 
+    if (a == 0) 
+        return b; 
+    return gcd(b % a, a); 
+} 
+  
+ 
+int main() 
+{ 
+    int a = 10, b = 15; 
+    cout << "GCD(" << a << ", " 
+         << b << ") = " << gcd(a, b)  
+                        << endl; 
+    a = 35, b = 10; 
+    cout << "GCD(" << a << ", " 
+         << b << ") = " << gcd(a, b)  
+                        << endl; 
+    a = 31, b = 2; 
+    cout << "GCD(" << a << ", " 
+         << b << ") = " << gcd(a, b)  
+                        << endl; 
+    return 0; 
+} 
+
+
+Output:
+GCD(10, 15) = 5
+GCD(35, 10) = 5
+GCD(31, 2) = 1
