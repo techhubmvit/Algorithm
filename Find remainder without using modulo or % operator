@@ -1,0 +1,55 @@
+Given two numbers ‘num’ and ‘divisor’, find remainder when ‘num’ is divided by ‘divisor’.
+The use of modulo or % operator is not allowed.
+
+Examples :
+
+Input:  num = 100, divisor = 7
+Output: 2
+
+Input:  num = 30, divisor = 9
+Output: 3
+
+The idea is simple, we run a loop to find the largest multiple of ‘divisor’ that is smaller than or equal to ‘num’.
+Once we find such a multiple, we subtract the multiple from ‘num’ to find the divisor.
+
+
+// C++ program to find remainder without using modulo operator 
+#include <iostream> 
+using namespace std; 
+  
+// This function returns remainder of num/divisor without  
+// using % (modulo) operator 
+int getRemainder(int num, int divisor) 
+{ 
+    // Handle divisor equals to 0 case 
+    if (divisor == 0) 
+    { 
+        cout << "Error: divisor can't be zero \n"; 
+        return -1; 
+    } 
+  
+    // Handle negative values 
+    if (divisor < 0) divisor = -divisor; 
+    if (num < 0)     num = -num; 
+  
+    // Find the largest product of 'divisor' that is smaller  
+    // than or equal to 'num' 
+    int i = 1; 
+    int product = 0; 
+    while (product <= num) 
+    { 
+        product = divisor * i; 
+        i++; 
+    } 
+  
+    // return remainder 
+    return num - (product - divisor); 
+} 
+  
+// Driver program to test above functions 
+int main() 
+{ 
+ //   cout << 100 %0; 
+    cout << getRemainder(100, 7); 
+    return 0; 
+}  
