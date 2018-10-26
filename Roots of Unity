@@ -1,0 +1,76 @@
+<p>
+Any complex number is said to be root of unity if it gives 1 when raised to some power.
+
+nth root of unity is any complex number such that it gives 1 when raised to the power n.
+</p>
+
+<pre>
+Mathematically, 
+An nth root of unity, where n is a positive integer 
+(i.e. n = 1, 2, 3, …) is a number z satisfying the
+equation 
+
+z^n  = 1
+or , 
+z^n - 1 = 0
+</pre>
+
+<p>
+We can use the De Moivre’s formula here.
+</p>
+
+<pre>
+( Cos x + i Sin x )^k = Cos kx + i Sin kx
+
+Setting x = 2*pi/n, we can obtain all the nth roots 
+of unity, using the fact that Nth roots are set of 
+numbers given by,
+
+Cos (2*pi*k/n) + i Sin(2*pi*k/n)
+Where, 0 <= k < n
+</pre>
+
+<p>
+Using the above fact we can easily print all the nth roots of unity !
+Below is a C program for the same.
+</p>
+
+
+#include<stdio.h>
+#include <math.h>
+
+
+// A C program to print n'th roots of unity 
+
+  
+// This function receives an integer n , and prints 
+// all the nth roots of unity 
+void printRoots(int n) 
+{ 
+    // theta = 2*pi/n 
+    double theta = M_PI*2/n; 
+  
+    // print all nth roots with 6 significant digits 
+    for(int k=0; k<n; k++) 
+    { 
+        // calculate the real and imaginary part of root 
+        double real = cos(k*theta); 
+        double img = sin(k*theta); 
+  
+        // Print real and imaginary parts 
+        printf("%.6f", real); 
+        img >= 0? printf(" + i "): printf(" - i "); 
+        printf("%.6f\n", fabs(img)); 
+    } 
+} 
+  
+// Driver function to check the program 
+int main() 
+{ 
+    printRoots(1); 
+    printf("\n");
+    printRoots(2); 
+    printf("\n"); 
+    printRoots(3); 
+    return 0; 
+} 
