@@ -1,6 +1,38 @@
-Binary search is a technique to search an item thereby finding its position in a sorted array.
-It basically divides the sorted array into two parts by comparing the item with the middle element.
-If it matches then the position is returned.
-Else it continues searching in either of the two parts depending on its value.
-This process continues and each time the item is compared with the updated mid value.
-If mid value is not returned after the process ends then  item is not found.
+#include <stdio.h>
+ 
+int main()
+{
+   int c, first, last, middle, n, search, array[100];
+ 
+   printf("Enter number of elements\n");
+   scanf("%d",&n);
+ 
+   printf("Enter %d integers\n", n);
+ 
+   for (c = 0; c < n; c++)
+      scanf("%d",&array[c]);
+ 
+   printf("Enter value to find\n");
+   scanf("%d", &search);
+ 
+   first = 0;
+   last = n - 1;
+   middle = (first+last)/2;
+ 
+   while (first <= last) {
+      if (array[middle] < search)
+         first = middle + 1;    
+      else if (array[middle] == search) {
+         printf("%d found at location %d.\n", search, middle+1);
+         break;
+      }
+      else
+         last = middle - 1;
+ 
+      middle = (first + last)/2;
+   }
+   if (first > last)
+      printf("Not found! %d isn't present in the list.\n", search);
+ 
+   return 0;  
+}
